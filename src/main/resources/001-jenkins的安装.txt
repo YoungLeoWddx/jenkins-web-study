@@ -1,0 +1,28 @@
+1，官网https://jenkins.io/download/下载jenkins.war，jenkins是一个web应用程序，需要web容器的支持。
+
+2，部署到windows的tomcat的webapp下面，这样就可以通过http://localhost:8080/jenkins来访问jenkins应用程序了，启动window上的tomcat来访问。
+
+3，首次启动jenkins会有一些初始化工作，根据页面提示操作即可，登录jenkins后，首次安装jenkins推荐的自定义插件。
+
+4，首次安装完毕jenkins之后，创建首个jenkins用户，admin，密码，admin，全名，管理员，邮箱，773958125@qq.com
+
+5，登陆之后，点击系统管理，如果提示有插件依赖错误，先解决错误。
+
+6，配置构建需要用到的jdk版本和maven版本
+	点击global tool configuration，都是用本机安装，由于我们使用的是windows下运行jenkins，所以，都用windows的jdk home和maven home配置。
+
+7，邮件通知配置（未完待续）
+	在http://updates.jenkins-ci.org/download/plugins/搜索安装email-ext（Email Extension Plugin）插件，
+	安装方式参考第5步骤。
+	
+	在系统设置找到Extended E-mail Notification，
+	
+8，安装git，svn插件，（在推荐安装里面都已经安装了，Git plugin和Subversion Plug-in），不用重复安装。
+
+9，新建一个作业
+	1，页面点击 新建，project name输入hello-jenkins，选择构建一个自由free-style风格的项目。
+	2，选择源码管理种的源代码的源，这里选择github上面的源代码。所以，这里选择git。	Repository URL输入，https://github.com/YoungLeoWddx/hello-jenkins，Credentials为none。
+	3，选择构建触发的条件，poll scm，它的意思是，定时检查版本库，发现有新的提交就触发构建。这种方式对git、SVN等所有版本管理系统都是通用的。在日程表输入五个 * * * * *，这是一种时间格式，代表任何时间都可以。
+	4，在构建种选择maven构建，Invoke top-level Maven targets，版本默认maven，Goals 填入clean package，这是maven的构建步骤。
+	5，
+	
