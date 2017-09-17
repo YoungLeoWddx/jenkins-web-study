@@ -11,4 +11,3 @@
 
 4，.jenkins目录存放了所有和jenkins相关的配置，项目，构建信息，因此升级jenkins是非常容易，只需要替换掉jenkins.war就可以完成升级。
 
-5，
