@@ -8,7 +8,38 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
-  	
+  	<!-- java servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- java jsp -->
+		<dependency>
+			 <groupId>javax.servlet.jsp</groupId>
+		    <artifactId>javax.servlet.jsp-api</artifactId>
+		    <version>2.3.1</version>
+		    <scope>provided</scope>
+		</dependency>
+		
+		<!-- 导入jstl1.2版本的实现，由于这个jstl依赖的servlet和jsp的jar包tomcat已经提供，因此需要排除 -->
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>jstl-impl</artifactId>
+			<version>1.2</version>
+				<exclusions>
+	                <exclusion>
+	                    <groupId>javax.servlet</groupId>
+	                    <artifactId>servlet-api</artifactId>
+	                </exclusion>
+	                <exclusion>
+	                    <groupId>javax.servlet.jsp</groupId>
+	                    <artifactId>jsp-api</artifactId>
+	                </exclusion>
+	            </exclusions>
+		</dependency>
   </dependencies>
   <build>
     <plugins>

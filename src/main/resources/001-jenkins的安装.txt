@@ -20,9 +20,11 @@
 8，安装git，svn插件，（在推荐安装里面都已经安装了，Git plugin和Subversion Plug-in），不用重复安装。
 
 9，新建一个作业
-	1，页面点击 新建，project name输入hello-jenkins，选择构建一个自由free-style风格的项目。
-	2，选择源码管理种的源代码的源，这里选择github上面的源代码。所以，这里选择git。	Repository URL输入，https://github.com/YoungLeoWddx/hello-jenkins，Credentials为none。
+	1，页面点击 新建，project name输入jenkins-web-study，选择构建一个自由free-style风格的项目。
+	2，选择源码管理种的源代码的源，这里选择github上面的源代码。所以，这里选择git。	Repository URL输入，https://github.com/YoungLeoWddx/jenkins-web-study，Credentials为none。
 	3，选择构建触发的条件，poll scm，它的意思是，定时检查版本库，发现有新的提交就触发构建。这种方式对git、SVN等所有版本管理系统都是通用的。在日程表输入五个 * * * * *，这是一种时间格式，代表任何时间都可以。
 	4，在构建种选择maven构建，Invoke top-level Maven targets，版本默认maven，Goals 填入clean package，这是maven的构建步骤。
-	5，
+	5，构建后添加一个publish junit test result report,测试报告xml填上，**/target/surefire-reports/*.xml，允许空的测试。
+	6，点击保存。点击保存后，每隔1分钟，jenkins都会去github上轮询master分支是否有变更，如果有变更，那么，进行maven的clean package动作。
+	7，可以在页面上观察构建的过程和输出，详见Jenkins权威指南51页。
 	
