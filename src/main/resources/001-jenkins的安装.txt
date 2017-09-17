@@ -11,7 +11,7 @@
 6，配置构建需要用到的jdk版本和maven版本
 	点击global tool configuration，都是用本机安装，由于我们使用的是windows下运行jenkins，所以，都用windows的jdk home和maven home配置。
 
-7，邮件通知配置
+7，邮件通知配置(全局)
 	在http://updates.jenkins-ci.org/download/plugins/搜索安装email-ext（Email Extension Plugin）插件，
 	安装方式参考第5步骤。
 	系统设置找到   系统管理员邮件地址，这里设置为：773958125@qq.com（这里一定要设置，否则无法发送邮件）
