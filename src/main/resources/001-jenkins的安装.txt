@@ -18,7 +18,7 @@
 	在系统设置找到Extended E-mail Notification，
 		SMTP server	: smtp.qq.com
 		User Name : 773958125@qq.com    （不知道为什么，每次打开系统设置，这个地方和下面的密码都要被重置位admin，需要重新设置）
-		password : nnmkdinhutngbceg
+		password : tcyzdmaeskwjbfdb
 		use ssl : true
 		smtp port : 465
 		charset : UTF-8
@@ -77,17 +77,7 @@
 		            </td>  
 		        </tr>  
 		        <tr>  
-		            <td><b>Test Counts</b>  
-		            <hr size="2" width="100%" align="center" /></td>  
-		        </tr> 
-		        <tr>  
-		            <td>
-		            	<pre  
-		                    style="font-size: 11pt; font-family: Tahoma, Arial, Helvetica, sans-serif">$TEST_COUNTS</pre>  
-		                <br /></td>  
-		        </tr>  
-		        <tr>  
-		            <td><b>Failed Test Results</b>  
+		            <td><b><font color="#0B610B">Failed Test Results:</font></b> 
 		            <hr size="2" width="100%" align="center" /></td>  
 		        </tr> 
 		        <tr>  
@@ -100,13 +90,13 @@
 		            <td><b><font color="#0B610B">构建日志 (最后 100行):</font></b>  
 		            <hr size="2" width="100%" align="center" /></td>  
 		        </tr>  
-		        <!-- <tr>  
+		        <tr>  
 		            <td>Test Logs (if test has ran): <a  
 		                href="${PROJECT_URL}ws/TestResult/archive_logs/Log-Build-${BUILD_NUMBER}.zip">${PROJECT_URL}/ws/TestResult/archive_logs/Log-Build-${BUILD_NUMBER}.zip</a>  
 		                <br />  
 		            <br />  
 		            </td>  
-		        </tr> -->  
+		        </tr>
 		        <tr>  
 		            <td><textarea cols="80" rows="30" readonly="readonly"  
 		                    style="font-family: Courier New">${BUILD_LOG, maxLines=100}</textarea>  
@@ -115,6 +105,8 @@
 		    </table>  
 		</body>  
 		</html>  
+		
+		Default Triggers: Failure - Any，Success，Unstable (Test Failures)
 	
 8，安装git，svn插件，（在推荐安装里面都已经安装了，Git plugin和Subversion Plug-in），不用重复安装。
 
