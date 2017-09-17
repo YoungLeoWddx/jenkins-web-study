@@ -11,11 +11,22 @@
 6，配置构建需要用到的jdk版本和maven版本
 	点击global tool configuration，都是用本机安装，由于我们使用的是windows下运行jenkins，所以，都用windows的jdk home和maven home配置。
 
-7，邮件通知配置（未完待续）
+7，邮件通知配置
 	在http://updates.jenkins-ci.org/download/plugins/搜索安装email-ext（Email Extension Plugin）插件，
 	安装方式参考第5步骤。
-	
+	系统设置找到   系统管理员邮件地址，这里设置为：773958125@qq.com（这里一定要设置，否则无法发送邮件）
 	在系统设置找到Extended E-mail Notification，
+		SMTP server	: smtp.qq.com
+		Default user E-mail suffix : @qq.com
+		User Name : 773958125    （不知道为什么，每次打开系统设置，这个地方和下面的密码都要被重置位admin，需要重新设置）
+		password : nnmkdinhutngbceg
+		use ssl : true
+		smtp port : 465
+		charset : UTF-8
+		Default Content Type : HTML(text/html)
+		Default Recipients : 19421598@qq.com   （可以设置多个默认收件人，用逗号隔开）
+		Default Subject : $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!  （邮件的标题）
+		
 	
 8，安装git，svn插件，（在推荐安装里面都已经安装了，Git plugin和Subversion Plug-in），不用重复安装。
 
@@ -30,6 +41,8 @@
 	8，可以在页面上观察构建的过程和输出，详见Jenkins权威指南51页。如果构建成功，构建历史种显示蓝色的球，否则显示红色的球。
 	
 10，安装Cobertura Plugin，这是一个代码覆盖率度量的插件。他是一个非常有用的工具，可以用来记录和显示生成的代码覆盖率度量。安装完重启Jenkins。
-	然后，在第9步中的5步骤中间再加上一个maven步骤，goals填写，cobertura:cobertura.配置publish Cobertura Coverage report为**/target/site/cobertura/coverage.xml
+	然后，在第9步中的5步骤中间再加上一个maven步骤，goals填写，cobertura:cobertura -Dcobertura.report.format=xml.配置publish Cobertura Coverage report为**/target/site/cobertura/coverage.xml
 	
-	然后，
+	然后，再来构建，就可以在项目视图种显示测试结果趋势和Code Coverage了。
+	
+11，在linux下安装jenkins参考其他教程。
