@@ -122,7 +122,7 @@
 	
 10，安装Cobertura Plugin，这是一个代码覆盖率度量的插件。他是一个非常有用的工具，可以用来记录和显示生成的代码覆盖率度量。安装完重启Jenkins。
 	然后，在第9步中的5步骤中间再加上一个maven步骤，goals填写，cobertura:cobertura -Dcobertura.report.format=xml.配置publish Cobertura Coverage report为**/target/site/cobertura/coverage.xml
-	
+	（Cobertura既有html格式的输出也有xml格式输出，而jekines使用的是xml格式）
 	然后，再来构建，就可以在项目视图种显示测试结果趋势和Code Coverage了。
 	
 11，在linux下安装jenkins参考其他教程。
