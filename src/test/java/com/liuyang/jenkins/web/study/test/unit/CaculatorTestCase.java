@@ -1,4 +1,4 @@
-package com.liuyang.jenkins.web.study.test;
+package com.liuyang.jenkins.web.study.test.unit;
 
 import static org.junit.Assert.assertEquals;
 

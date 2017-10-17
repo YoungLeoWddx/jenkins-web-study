@@ -23,7 +23,7 @@
 		smtp port : 465
 		charset : UTF-8
 		Default Content Type : HTML(text/html)
-		Default Recipients : 19421598@qq.com   （可以设置多个默认收件人，用逗号隔开）
+		Default Recipients : 19421598@qq.com   （可以设置多个默认收件人，用逗号隔开，如果是抄送，可以用cc:859138200@qq.com，cc这样的前缀）
 		Default Subject : $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!  （邮件的标题）
  		Default Content :
 		<!DOCTYPE html>  
@@ -106,23 +106,38 @@
 		</body>  
 		</html>  
 		
-		Default Triggers: Failure - Any，Success，Unstable (Test Failures)
+		Default Triggers（默认触发发送邮件的通知）: Failure - Any，Success，Unstable (Test Failures)
 	
 8，安装git，svn插件，（在推荐安装里面都已经安装了，Git plugin和Subversion Plug-in），不用重复安装。
 
 9，新建一个作业
 	1，页面点击 新建，project name输入jenkins-web-study，选择构建一个自由free-style风格的项目。
 	2，选择源码管理种的源代码的源，这里选择github上面的源代码。所以，这里选择git。	Repository URL输入，https://github.com/YoungLeoWddx/jenkins-web-study，Credentials为none。
-	3，选择构建触发的条件，poll scm，它的意思是，定时检查版本库，发现有新的提交就触发构建。这种方式对git、SVN等所有版本管理系统都是通用的。在日程表输入五个 * * * * *，这是一种时间格式，代表任何时间都可以。
+	3，选择构建触发的条件，poll scm，它的意思是，定时检查版本库，发现有新的提交就触发构建。这种方式对git、SVN等所有版本管理系统都是通用的。在日程表输入五个 * * * * *，这是一种时间格式，代表任何时间都可以。每一分钟就轮询一次。
 	4，在构建种选择maven构建，Invoke top-level Maven targets，版本默认maven，Goals 填入clean package，这是maven的构建步骤。
 	5,继续添加一个maven构建的步骤，Invoke top-level Maven targets，版本默认maven，Goals填入javadoc:javadoc。
 	6，构建后添加一个publish junit test result report,测试报告xml填上，**/target/surefire-reports/*.xml，允许空的测试。
 	7，点击保存。点击保存后，每隔1分钟，jenkins都会去github上轮询master分支是否有变更，如果有变更，那么，进行maven的clean package动作。
-	8，可以在页面上观察构建的过程和输出，详见Jenkins权威指南51页。如果构建成功，构建历史种显示蓝色的球，否则显示红色的球。
+	8，可以在页面上观察构建的过程和输出，详见Jenkins权威指南51页。如果构建成功，构建历史种显示蓝色的球，否则显示红色的球。还会用天气信息来显示构建的状态。
+	9，可以在测试结果趋势图中查看单元测试的结果趋势，可以查看到底是哪个单元测试失败细节等。
+	10，构建成功后，可以在jenkins页面下载构建好的构建产物。
 	
-10，安装Cobertura Plugin，这是一个代码覆盖率度量的插件。他是一个非常有用的工具，可以用来记录和显示生成的代码覆盖率度量。安装完重启Jenkins。
-	然后，在第9步中的5步骤中间再加上一个maven步骤，goals填写，cobertura:cobertura -Dcobertura.report.format=xml.配置publish Cobertura Coverage report为**/target/site/cobertura/coverage.xml
+	
+10，安装Jenkins的Javadoc插件（基于maven），Jenkins可以用来配置javadoc，是一个非常有用的工具。在第9步中的5步骤中间再加上一个maven步骤，goals填写，javadoc:javadoc，可以生成项目的javadoc，注意对类和方法的javadoc注释要符合javadoc规范。
+默认生成的javadoc在target目录中的site目录中。当然我们可以通过构建后的步骤，来配置publish javadoc到指定的路径，但是要注意，指定的目录必须要先创建出来。
+配置好之后，构建成功会有javadoc按钮，按下去就可以显示整个应用的javadoc了。
+这里有一个问题，就是jenkins默认是无法运行js，很可能无法正常显示正确的html页面，因此，需要在系统管理----脚本命令行中运行如下代码：System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")，然后重新构建，就可以正常显示javadoc了。
+
+11，安装Jenkins的Cobertura Plugin（基于maven），这是一个代码覆盖率度量的插件。他是一个非常有用的工具，可以用来记录和显示生成的代码覆盖率度量。安装完重启Jenkins。
+	然后，在第9步中的5步骤中间再加上一个maven步骤，goals填写，cobertura:cobertura -Dcobertura.report.format=xml.插件会在target/site/cobertura/目录中生成一些覆盖率的文件，有html和xml格式的。
+	我们在配置publish Cobertura Coverage report的时候，指定为**/target/site/cobertura/coverage.xml
 	（Cobertura既有html格式的输出也有xml格式输出，而jekines使用的是xml格式）
-	然后，再来构建，就可以在项目视图种显示测试结果趋势和Code Coverage了。
+	然后，再来构建，jenkins使用这个xml格式的覆盖率信息，就可以在项目视图种显示测试结果趋势和Code Coverage了。
 	
-11，在linux下安装jenkins参考其他教程。
+	注意，cobertura会进行一次测试，也就是说他是包含两个操作，第一测试，第二分析生成覆盖率信息。
+	
+	关于Cobertura发布插件的配置：
+	Coverage Metric Targets配置package，classes，method，line，condition，分别是包，类，方法，行，条件分支的覆盖。
+	可以配置为完全健康的覆盖率、完全不健康的覆盖率和稳定版本覆盖率的指标。可以根据具体项目实际进行微调。
+	
+12，在linux下安装jenkins参考其他教程。

@@ -1,0 +1,23 @@
+1，在系统配置中配置Extended E-mail Notification：
+	1.1 参考001，jenkins安装的部分。
+	补充： Default Recipients默认的接受人，可以填上开发组长或者团队负责人的邮件，如果有多个，可以用逗号隔开。
+	Use List-ID Email Header功能未知，待续。。。
+	Add 'Precedence: bulk' Email Header功能未知，待续。。。
+	Reply To List：功能未知，待续。。。
+	Enable Debug Mode	功能未知，待续。。。
+	Require Administrator for Template Testing	功能未知，待续。。。
+	Enable watching for jobs 功能未知，待续。。。
+	Content Token Reference：可以在此查看构建的变量信息。
+	Default Triggers（默认触发右键的通知）：
+		Failure - 1st：第一次构建失败发通知，后面的构建失败就不发通知。没卵用。
+		Failure - 2nd：第二次构建失败才发通知，第一次或者第3次，第4次构建失败都不发通知。没卵用。
+		Failure - Any：任何一次构建失败都会发送通知，这个比较实用。
+		Failure - Still：如果发生持续的构建失败，那么，就会发送通知。如果并非是持续发生的构建失败，是不会发送通知的。这个也比较有用。比如，持续构建失败的就通知技术经理。
+		Success：任何成功的构建都会发生通知。
+		Unstable (Test Failures)：任何不稳定的构建都会发送通知。
+		
+		
+	1.2 在项目构建作业的配置页面，
+		Attach Build Log：添加整个构建的日志到邮件中。
+		Triggers：配置详细的触发选项：
+			

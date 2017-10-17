@@ -1,4 +1,4 @@
-package com.liuyang.jenkins.web.study.test;
+package com.liuyang.jenkins.web.study.test.unit;
 
 import org.junit.Test;
 

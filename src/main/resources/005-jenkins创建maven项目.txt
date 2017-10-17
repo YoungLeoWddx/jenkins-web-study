@@ -1,0 +1,7 @@
+1，首先安装Maven Integration plugin插件或者Pipeline Maven Integration Plugin，否则，不会有构建maven项目的这个选项。
+
+2，详见jenkins权威指南140页。
+
+3，使用Deploy artifact to maven repository 部署到Nexus私服。
+
+4，maven多模块项目的构建。
