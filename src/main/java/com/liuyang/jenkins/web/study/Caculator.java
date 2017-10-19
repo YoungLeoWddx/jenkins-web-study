@@ -1,6 +1,6 @@
 package com.liuyang.jenkins.web.study;
 
-public class Caculator 
+public class Caculator {｝
 	
 	public int add(int a,int b){
 		return a + b;
