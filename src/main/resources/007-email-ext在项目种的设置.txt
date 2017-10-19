@@ -18,6 +18,23 @@
 		
 		
 	1.2 在项目构建作业的配置页面，
-		Attach Build Log：添加整个构建的日志到邮件中。
+		Attach Build Log：添加整个构建的日志到邮件中，将会以一个log附件的形式提供下载。
 		Triggers：配置详细的触发选项：
+			Send to Developers：Sends email to all the people who caused a change in the change set.
+				什么意思呢？就是说发送给所有对本次构建check in代码的开发者，比如，上一次构建和本次构建之间，有4个开发人员提交了代码，那么，
+				就会在两次构建之间像这4个开发人员发送构建通知的邮件。邮件的配置在jenkins用户中配置。
+				
+			Include Culprits： If this is checked AND Send To Developers is checked, emails will include everyone who committed 
+			since the last successful build.
+				从字面解释，这个Culprits需要和Developers配合使用才行，他的意思是，发送上一次成功构建到本次构建之间提交过代码的每一个开发者。和Developers有什么
+				区别呢？区别在于Developers中，只是发送上一次构建到本次构建之间提交过代码的人，并没有说，上一次构建一定是成功的。
+				
+				因此，Developers和Include Culprits配合使用是最好的。
+				
+			Requestor:发送给最后触发这次构建的提交者，如果上一次构建和本次构建之间有多个开发中提交，那么这样就不是很准确的反应是谁的提交造成的问题了。
 			
+			Suspected of causing a unit test to begin failing：发送可疑的造成单元测试失败的提交者。
+			
+			Suspected of causing the build to begin failing：发送给可疑的造成构建失败的提交者。
+			
+			Upstream committed：发送给触发本地构建的上游构建提交者。

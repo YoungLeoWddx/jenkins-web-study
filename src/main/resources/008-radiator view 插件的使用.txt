@@ -1,0 +1,6 @@
+1,Radiator View Plugin,提供以高度可见的方式显示项目状态的作业视图。 这是在办公室墙上的屏幕上显示为极端反馈设备的一种形式的理想选择。
+jenkins默认的视图是all，可以在jenkins视图页面的tab上进行选择。
+
+2，点击视图tab上面的add，选择radiator视图，然后起一个名字，就创建了一个radiator视图，下面是对ardiator视图配置的说明：
+	 Jobs： 指定了radiator，可以选择视图中需要展示的构建作业。
+	 
