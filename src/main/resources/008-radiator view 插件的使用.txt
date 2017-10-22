@@ -3,4 +3,4 @@ jenkins默认的视图是all，可以在jenkins视图页面的tab上进行选择
 
 2，点击视图tab上面的add，选择radiator视图，然后起一个名字，就创建了一个radiator视图，下面是对ardiator视图配置的说明：
 	 Jobs： 指定了radiator，可以选择视图中需要展示的构建作业。
-	 
+	 Show as Projects?，是否以项目来展示。
