@@ -64,5 +64,4 @@
 
 4，publish Checkstyle analysis results ：
 	指定分析报告的xml地址：target/checkstyle-result.xml
-	指定95%以上为太阳（完美），90%以下为失败构建。
-	Default Encoding：
+	Default Encoding：UTF-8
