@@ -219,3 +219,19 @@
 	
 	
 12，在linux下安装jenkins参考其他教程。
+
+
+13，jenkins的web页面的乱码问题解决办法：
+解决jenkins控制台中文乱码问题
+
+1 设置jenkins服务器环境变量
+JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
+2 配置一个变量
+系统管理->系统设置，添加编码环境变量 LANG=zh_CN.UTF-8
+3 Tomcat配置
+Jenkins建议在tomcat中使用utf-8编码，配置tomcat下conf目录的server.xml文件
+<Connector port="8080" URIEncoding="utf-8" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" />
+ 
+4，如果Job的控制台中文输出乱码，请将URIEncoding="utf-8"更改为useBodyEncodingForURI="true"

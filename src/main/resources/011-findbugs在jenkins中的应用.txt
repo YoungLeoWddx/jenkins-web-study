@@ -1,0 +1,1 @@
+注意，在jenkins发布findbugs报告的时候，应该使用findbugsXML.xml文件，而不是findbugs.xml。
