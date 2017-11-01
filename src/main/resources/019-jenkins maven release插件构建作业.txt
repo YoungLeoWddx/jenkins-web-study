@@ -1,0 +1,26 @@
+详细参考jenkins权威指南307页。
+
+从前面的jenkins学习过程可以得知，jenkins可以用来自动化的构建，自动化的测试，自动化的发布。我们可以将软件开发过程中的多个步骤进行管道化，从软件的开发，
+测试，到软件的发布，升级，打标等生命周期管道化。
+
+1，安装maven release plugin。
+	maven release插件可以为我们的项目更新maven版本号，用合适的tag来给scm系统打标，并且将项目的发布版部署到maven的仓库中，比如私服或者中央仓库。
+	手工完成这个过程是非常无聊和繁琐的。maven release plugin可以将其自动化。
+	
+	在maven-study中讲过maven release plugin的使用，我们是在开发人员的机器上进行一个项目的快照版到发布版之间的变化的。这显然并不专业，我们希望
+	持续集成服务器来做这个事情。一般来说，这个发布构建是人工手动触发。
+	
+2，安装完毕jenkins端的maven release plugin之后，在创建的maven的作业中，在构建环境选项中勾选Maven release build，就是说，
+在这里配置发布release版的构建。其他的配置，安装maven作业的配置走，这个不多说，就是多一个Maven release build的勾选。如果是多模块项目，
+需要specify one version for all modules。
+
+3，我们在项目构建左侧菜单中找到 Perform Maven Release，可以手工触发一次发布构建，一般来说，发布构建是在正常快照构建完成，所有的验收测试都通过的时候，
+进行的手工触发，将会完成mvn release:perform这样的一个过程（mvn deploy）。我们可以在 Perform Maven Release选项中配置
+Release Version：发布构建的版本号，Development version，下一个开发SNAPSHOT的版本号， 	Dry run only?是说是否只是运行release:prepare。
+
+
+4，后来发现jenkins git push的时候，死活就是不动，这是一件很奇怪的事情，待研究。。。
+	
+	研究结果就是，在Perform Maven Release界面，需要制定scm的用户名和密码啊，他妈的，Specify SCM login/password 要填入用户名和密码。
+	
+	

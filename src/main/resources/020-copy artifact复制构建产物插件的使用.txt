@@ -1,0 +1,6 @@
+详细金jenkins权威指南310页。
+
+这里要注明一下，copy artifact是从目标构建任务的build中的\archive\target中复制构建，因此，目标构建作业必须已经archive了
+构建的jar或者war才行啊，否则会报错：Unable to access upstream artifacts area D:\jenkins-home\jobs\promoted-builds-plugin-study\builds\6\archive. Does source project archive artifacts?
+
+默认情况下会把目录结构复制进去，比如target/aaa.jar，是\archive下的路径。

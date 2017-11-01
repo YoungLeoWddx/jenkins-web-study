@@ -1,0 +1,7 @@
+1,jenkins中新建一个slave是很容易的，按照配置一步一步的做就是了。
+	注意，因为window中的git使用的是git.exe，再linux中，使用的是git命令，因此，需要配置git：Default ，git，而不是git.exe。
+
+2，有点类似CDH的agent代理机制，实现了master和slave的机制。
+
+3，如果出现java.io.IOException: Cannot run program "mvn" 这样的说法，那么，再作业配置页面，maven的version不应该是default，
+而应该是和再slave节点上版本一致的maven版本选择！！

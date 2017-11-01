@@ -1,1 +1,3 @@
 类似checkstyle，这里不再详述。
+
+有一点要说的是，cpd插件实际上叫做dry plugin。然后根据maven的pmd插件生成的cpd.xml可以报告重复代码。
